@@ -63,4 +63,8 @@ public class Machine {
     public int getProgramCounter() {
         return this.pc;
     }
+
+    private void updateProgramCounter(int nextInstruction) {
+        this.pc = nextInstruction;
+    }
 }
