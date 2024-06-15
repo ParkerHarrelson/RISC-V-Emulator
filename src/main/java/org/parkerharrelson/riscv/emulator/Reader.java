@@ -2,6 +2,14 @@ package org.parkerharrelson.riscv.emulator;
 
 import java.io.IOException;
 
+/**
+ * ELF File Reading Class for Part 2 of RISC-V Emulator Project
+ * <p>
+ * Contains all logic for reading ELF file into memory, verification
+ * of the contents of the file to ensure it is fit for this machine,
+ * and loading correct entry point address into the program counter.
+ *</p>
+ */
 public class Reader {
 
     /**

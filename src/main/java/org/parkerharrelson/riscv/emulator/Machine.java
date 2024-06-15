@@ -2,9 +2,19 @@ package org.parkerharrelson.riscv.emulator;
 
 import java.io.IOException;
 
+/**
+ * Machine core code class for Part 1 of RISC-V Emulator Project
+ *
+ * <p>
+ * Contains logic for setting up the machine's memory (RAM) with
+ * 1 MiB, the register file containing 32, 32 bit registers, the
+ * and the program counter. Will be the main entry point into running
+ * the emulator, with logic to run the entire pipeline after ELF file
+ * contents are stored in memory.
+ * </p>
+ */
 public class Machine {
 
-    // 1 mebibyte size
     private static final int RAM_SIZE = 1_048_576;
     private final byte[] memory;
     private final int[] registers;
@@ -13,7 +23,7 @@ public class Machine {
 
     public Machine() {
         registers = new int[32];
-        pc = 0x00000000;
+        pc = 0x0;
         memory = new byte[RAM_SIZE];
         reader = new Reader();
     }
@@ -29,7 +39,9 @@ public class Machine {
         reader.readElfFile(memory, filepath);
     }
 
-    // Entry point for running the emulator. Run loop will take place in here.
+    /**
+     * Entry point for running the emulator. Run loop will take place in here.
+     */
     public void run() {
 
     }
@@ -47,24 +59,51 @@ public class Machine {
         return (value ^ bitMask) - bitMask;
     }
 
-    // This is going to be a method that in the future will be used for fetching
-    // from a specific register
-    public int getRegister() {
-        return registers[0];
+    /**
+     * Method for fetching content from a specified valid register. x0 register always returns 0x0
+     *
+     * @param index The index of the register in which contents are being fetched.
+     * @return The 4 byte contents of the register.
+     */
+    public int getRegister(int index) {
+        if (index == 0) {
+            return 0x0;
+        } else if (index >= registers.length || index < 0) {
+            throw new IndexOutOfBoundsException("Attempting to access a register that does not exist.");
+        } else {
+            return registers[index];
+        }
     }
 
-    // This is going to be a method where we write to a register, if that is how it works
-    public void writeToRegister(int register, int val) {
-        registers[register] = val;
+    /**
+     * Write value to specific register. If index is 0, do not write to register.
+     *
+     * @param index Index of the register that is being written to.
+     * @param val The value that will be stored in the register specified.
+     */
+    public void writeToRegister(int index, int val) {
+        if (index < registers.length && index > 0) {
+            registers[index] = val;
+        } else if (index >= registers.length) {
+            throw new IndexOutOfBoundsException("Attempting to write to an invalid register.");
+        }
     }
 
-    // This is a getter for the program counter since it will be a private field
-    // within the Machine class
+    /**
+     * Getter method for the contents of the program counter.
+     *
+     * @return The contents of the program counter.
+     */
     public int getProgramCounter() {
         return this.pc;
     }
 
-    private void updateProgramCounter(int nextInstruction) {
-        this.pc = nextInstruction;
+    /**
+     * Method for setting a new value in the program counter.
+     *
+     * @param programCounter The new contents that will be stored in the program counter.
+     */
+    private void setProgramCounter(int programCounter) {
+        this.pc = programCounter;
     }
 }
