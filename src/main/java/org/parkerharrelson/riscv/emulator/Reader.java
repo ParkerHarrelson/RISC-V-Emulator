@@ -1,6 +1,9 @@
 package org.parkerharrelson.riscv.emulator;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+
+import static org.parkerharrelson.riscv.constants.EmulatorConstants.*;
 
 /**
  * ELF File Reading Class for Part 2 of RISC-V Emulator Project
@@ -22,7 +25,15 @@ public class Reader {
      * @throws IOException If an I/O error occurs while reading the ELF file.
      */
     public void readElfFile(byte[] memory, String filePath) throws IOException {
+        FileInputStream elfInputStream = new FileInputStream(filePath);
+        byte[] header = new byte[ELF_HEADER_SIZE];
 
+        // TODO: validate the header of the file and then read in the contents into memory
+
+        elfInputStream.close();
     }
 
+    private boolean isValidElfFile(byte[] header) {
+        return false;
+    }
 }

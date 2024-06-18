@@ -2,6 +2,8 @@ package org.parkerharrelson.riscv.emulator;
 
 import java.io.IOException;
 
+import static org.parkerharrelson.riscv.constants.EmulatorConstants.RAM_SIZE;
+
 /**
  * Machine core code class for Part 1 of RISC-V Emulator Project
  *
@@ -15,7 +17,6 @@ import java.io.IOException;
  */
 public class Machine {
 
-    private static final int RAM_SIZE = 1_048_576;
     private final byte[] memory;
     private final int[] registers;
     private int pc;
