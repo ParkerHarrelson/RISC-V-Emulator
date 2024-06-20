@@ -1,9 +1,9 @@
-package org.parkerharrelson.riscv.emulator;
+package org.parkerharrelson.riscv.core;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import static org.parkerharrelson.riscv.constants.EmulatorConstants.*;
+import static org.parkerharrelson.riscv.util.EmulatorConstants.*;
 
 /**
  * ELF File Reading Class for Part 2 of RISC-V Emulator Project

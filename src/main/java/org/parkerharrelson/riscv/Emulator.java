@@ -1,14 +1,14 @@
 package org.parkerharrelson.riscv;
 
-import org.parkerharrelson.riscv.emulator.Machine;
-
+import org.parkerharrelson.riscv.core.Machine;
 import java.io.IOException;
 
-/*
-    This class is the "main" class of the program. It is responsible for pulling the command line arguments
-    out and instantiating the Machine itself. It does some basic validation and exception handling to ensure
-    that we can actually run the emulator. It is also, of course, responsible for telling the machine when
-    to run.
+/**
+ * Main entry point for the RISC-V emulator.
+ * This class is responsible for pulling the command line arguments
+ * out and instantiating the Machine itself. It does some basic validation
+ * and exception handling to ensure that we can actually run the emulator.
+ * It is also responsible for telling the machine when to run.
  */
 public class Emulator {
 

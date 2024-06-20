@@ -1,4 +1,4 @@
-package org.parkerharrelson.riscv.constants;
+package org.parkerharrelson.riscv.util;
 
 public class EmulatorConstants {
 

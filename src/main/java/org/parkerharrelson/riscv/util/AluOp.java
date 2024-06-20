@@ -1,4 +1,4 @@
-package org.parkerharrelson.riscv.emulator;
+package org.parkerharrelson.riscv.util;
 
 public enum AluOp {
 
