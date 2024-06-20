@@ -9,4 +9,8 @@ public class InstructionDecode {
     public InstructionDecode(IMachine machine) {
         this.machine = machine;
     }
+
+    public void decodeInstruction(int instruction) {
+
+    }
 }

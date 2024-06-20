@@ -9,4 +9,8 @@ public class InstructionFetch {
     public InstructionFetch(IMachine machine) {
         this.machine = machine;
     }
+
+    public int fetchInstruction() {
+        return 0;
+    }
 }

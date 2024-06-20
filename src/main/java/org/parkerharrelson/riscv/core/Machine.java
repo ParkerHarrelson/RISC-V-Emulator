@@ -57,6 +57,15 @@ public class Machine implements IMachine {
      */
     public void run() {
 
+        boolean tempTrue = true;
+        while (tempTrue) {
+            int instruction = fetchStage.fetchInstruction();
+            decodeStage.decodeInstruction(instruction);
+            executeStage.executeInstruction(instruction);
+            memoryStage.accessMemory(instruction);
+            writebackStage.writebackInstruction(instruction);
+            tempTrue = false;
+        }
     }
 
     /**
@@ -114,6 +123,36 @@ public class Machine implements IMachine {
     @Override
     public byte[] getMemory() {
         return memory;
+    }
+
+    /**
+     * Handles system calls based on the value in the a7 register.
+     * Will be called in the writeback stage.
+     */
+    @Override
+    public void handleSystemCall() {
+        int syscallNumber = getRegister(17); // a7
+        switch (syscallNumber) {
+            case 0: // Exit
+                System.exit(getRegister(10)); // a0
+                break;
+            case 1: // Putchar
+                System.out.print((char) getRegister(10)); // a0
+                break;
+            case 2: // Getchar
+                try {
+                    int input = System.in.read();
+                    writeToRegister(10, input); // a0
+                } catch (IOException e) {
+                    System.err.println("Error occurred reading input: " + e.getMessage());
+                }
+                break;
+            case 3: // Debug
+                // Handle debug call
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown system call: " + syscallNumber);
+        }
     }
 
     /**

@@ -9,4 +9,8 @@ public class RegisterWriteback {
     public RegisterWriteback(IMachine machine) {
         this.machine = machine;
     }
+
+    public void writebackInstruction(int instruction) {
+
+    }
 }

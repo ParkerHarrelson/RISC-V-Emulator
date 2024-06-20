@@ -6,4 +6,5 @@ public interface IMachine {
     int getProgramCounter();
     void setProgramCounter(int programCounter);
     byte[] getMemory();
+    void handleSystemCall();
 }

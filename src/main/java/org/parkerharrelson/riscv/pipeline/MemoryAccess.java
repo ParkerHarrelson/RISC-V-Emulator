@@ -9,4 +9,8 @@ public class MemoryAccess {
     public MemoryAccess(IMachine machine) {
         this.machine = machine;
     }
+
+    public void accessMemory(int instruction) {
+
+    }
 }

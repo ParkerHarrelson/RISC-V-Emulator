@@ -9,4 +9,8 @@ public class InstructionExecute {
     public InstructionExecute(IMachine machine) {
         this.machine = machine;
     }
+
+    public void executeInstruction(int instruction) {
+
+    }
 }
