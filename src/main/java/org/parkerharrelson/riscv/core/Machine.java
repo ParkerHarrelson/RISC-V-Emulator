@@ -49,7 +49,7 @@ public class Machine implements IMachine {
      * @throws IOException Exception to be thrown if there are any issues with reading the file into memory
      */
     public void loadContents(String filepath) throws IOException {
-        reader.readElfFile(memory, filepath);
+        reader.readElfFile(memory, this, filepath);
     }
 
     /**
