@@ -1,6 +1,7 @@
 package org.parkerharrelson.riscv.pipeline;
 
 import org.parkerharrelson.riscv.core.IMachine;
+import org.parkerharrelson.riscv.util.Instruction;
 
 public class MemoryAccess {
 
@@ -10,7 +11,7 @@ public class MemoryAccess {
         this.machine = machine;
     }
 
-    public void accessMemory(int instruction) {
+    public void accessMemory(Instruction instruction) {
 
     }
 }

@@ -1,6 +1,7 @@
 package org.parkerharrelson.riscv.pipeline;
 
 import org.parkerharrelson.riscv.core.IMachine;
+import org.parkerharrelson.riscv.util.Instruction;
 
 public class InstructionDecode {
 
@@ -10,7 +11,7 @@ public class InstructionDecode {
         this.machine = machine;
     }
 
-    public void decodeInstruction(int instruction) {
+    public void decodeInstruction(Instruction instruction) {
 
     }
 }

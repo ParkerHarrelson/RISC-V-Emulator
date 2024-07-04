@@ -1,6 +1,7 @@
 package org.parkerharrelson.riscv.core;
 
 import org.parkerharrelson.riscv.pipeline.*;
+import org.parkerharrelson.riscv.util.Instruction;
 
 import java.io.IOException;
 
@@ -59,7 +60,7 @@ public class Machine implements IMachine {
 
         boolean tempTrue = true;
         while (tempTrue) {
-            int instruction = fetchStage.fetchInstruction();
+            Instruction instruction = fetchStage.fetchInstruction();
             decodeStage.decodeInstruction(instruction);
             executeStage.executeInstruction(instruction);
             memoryStage.accessMemory(instruction);

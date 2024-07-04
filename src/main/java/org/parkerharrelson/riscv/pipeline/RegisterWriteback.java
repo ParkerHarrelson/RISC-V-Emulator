@@ -1,6 +1,7 @@
 package org.parkerharrelson.riscv.pipeline;
 
 import org.parkerharrelson.riscv.core.IMachine;
+import org.parkerharrelson.riscv.util.Instruction;
 
 public class RegisterWriteback {
 
@@ -10,7 +11,7 @@ public class RegisterWriteback {
         this.machine = machine;
     }
 
-    public void writebackInstruction(int instruction) {
+    public void writebackInstruction(Instruction instruction) {
 
     }
 }
