@@ -68,8 +68,7 @@ public class Instruction {
         return aluop;
     }
 
-    public void setAluop(AluOp aluop) {
+    public void setAluOp(AluOp aluop) {
         this.aluop = aluop;
     }
-
 }
