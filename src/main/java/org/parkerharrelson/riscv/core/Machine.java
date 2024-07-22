@@ -37,7 +37,7 @@ public class Machine implements IMachine {
         reader = new Reader();
         fetchStage = new InstructionFetch(this);
         decodeStage = new InstructionDecode(this);
-        executeStage = new InstructionExecute(this);
+        executeStage = new InstructionExecute();
         memoryStage = new MemoryAccess(this);
         writebackStage = new RegisterWriteback(this);
     }

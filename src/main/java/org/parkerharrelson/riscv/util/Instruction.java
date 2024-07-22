@@ -15,6 +15,7 @@ public class Instruction {
 
     private int memop;  // 0 = No mem op, 1 = Load mem op, 2 = Store mem op
     private AluOp aluop; // ALU operation
+    private int result;  // Result of the ALU operation
 
     public int getInst() {
         return inst;
@@ -70,5 +71,13 @@ public class Instruction {
 
     public void setAluOp(AluOp aluop) {
         this.aluop = aluop;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 }
