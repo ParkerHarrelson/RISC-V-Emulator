@@ -29,6 +29,7 @@ public class Machine implements IMachine {
     private final InstructionExecute executeStage;
     private final MemoryAccess memoryStage;
     private final RegisterWriteback writebackStage;
+    private boolean isRunning;
 
     public Machine() {
         registers = new int[32];
@@ -40,6 +41,7 @@ public class Machine implements IMachine {
         executeStage = new InstructionExecute();
         memoryStage = new MemoryAccess(this);
         writebackStage = new RegisterWriteback(this);
+        this.isRunning = true;
     }
 
     /**
@@ -58,14 +60,12 @@ public class Machine implements IMachine {
      */
     public void run() {
 
-        boolean tempTrue = true;
-        while (tempTrue) {
+        while (isRunning) {
             Instruction instruction = fetchStage.fetchInstruction();
             decodeStage.decodeInstruction(instruction);
             executeStage.executeInstruction(instruction);
             memoryStage.accessMemory(instruction);
             writebackStage.writebackInstruction(instruction);
-            tempTrue = false;
         }
     }
 
@@ -135,7 +135,7 @@ public class Machine implements IMachine {
         int syscallNumber = getRegister(17); // a7
         switch (syscallNumber) {
             case 0: // Exit
-                System.exit(getRegister(10)); // a0
+                isRunning = false; // Stop the emulator
                 break;
             case 1: // Putchar
                 System.out.print((char) getRegister(10)); // a0

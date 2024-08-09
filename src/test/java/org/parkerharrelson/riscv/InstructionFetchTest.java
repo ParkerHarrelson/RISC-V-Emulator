@@ -19,10 +19,8 @@ public class InstructionFetchTest {
     public void setUp() throws IOException {
         machine = new Machine();
         instructionFetch = new InstructionFetch(machine);
-        // Load a test ELF file to set up memory and initial PC
         machine.loadContents("src/test/resources/test.elf");
 
-        // Debug: Print initial PC and memory contents
         int pc = machine.getProgramCounter();
         byte[] memory = machine.getMemory();
         System.out.printf("Initial PC: %d%n", pc);
@@ -37,20 +35,15 @@ public class InstructionFetchTest {
 
     @Test
     public void testFetchInstruction() {
-        // Expected instruction at the initial PC
-        int expectedInst = 0x04030201; // Assuming the first 4 bytes of test.elf are 01 02 03 04 in little-endian
+        int expectedInst = 0x04030201;
 
-        // Fetch the instruction
         Instruction fetchedInstruction = instructionFetch.fetchInstruction();
 
-        // Verify the fetched instruction
         assertEquals(expectedInst, fetchedInstruction.getInst(), "Fetched instruction does not match expected value");
 
-        // Verify that the PC has been incremented by 4
-        int expectedPc = machine.getProgramCounter() - 4 + 4; // PC should be incremented by 4 after fetching the first instruction
+        int expectedPc = machine.getProgramCounter() - 4 + 4;
         assertEquals(expectedPc, machine.getProgramCounter(), "Program counter did not increment correctly");
 
-        // Verify that the stack pointer is set correctly
         int expectedSp = machine.getMemory().length;
         assertEquals(expectedSp, machine.getRegister(2), "Stack pointer was not set correctly");
     }

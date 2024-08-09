@@ -21,10 +21,6 @@ public class Instruction {
         return inst;
     }
 
-    public void setInst(int inst) {
-        this.inst = inst;
-    }
-
     public int getLeft() {
         return left;
     }

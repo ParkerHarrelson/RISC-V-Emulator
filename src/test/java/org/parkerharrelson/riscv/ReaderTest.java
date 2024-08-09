@@ -18,18 +18,14 @@ public class ReaderTest {
         Machine machine = new Machine();
         Reader reader = new Reader();
 
-        // Load the ELF file
         reader.readElfFile(machine.getMemory(), machine, "src/test/resources/test.elf");
 
-        // Load the expected memory contents
         byte[] expectedMemory = Files.readAllBytes(Paths.get("src/test/resources/expected_memory.bin"));
 
-        // Extract the relevant memory segment for comparison
-        int vaddrStart = 0x1000; // Starting virtual address
+        int vaddrStart = 0x1000;
         int vaddrEnd = vaddrStart + expectedMemory.length;
         byte[] loadedMemorySegment = Arrays.copyOfRange(machine.getMemory(), vaddrStart, vaddrEnd);
 
-        // Compare the loaded memory with the expected memory
         assertArrayEquals(expectedMemory, loadedMemorySegment, "Memory contents do not match the expected output");
     }
 }

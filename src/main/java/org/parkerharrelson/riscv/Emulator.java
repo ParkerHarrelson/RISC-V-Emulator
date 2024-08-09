@@ -14,7 +14,7 @@ public class Emulator {
 
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.err.println("Usage: RISC-V Emulator <file>");
+            System.err.println("Error: Must Provide File Path");
             System.exit(1);
         }
 
